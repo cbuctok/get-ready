@@ -80,22 +80,23 @@ Atomicity, Consistency, Isolation, Durability
   * 6NF: Sixth normal form
 
 ### когда может понадобиться денормализация БД
-[Денормализация дб](https://habr.com/company/latera/blog/281262/)
+[DB Denormalization](https://habr.com/company/latera/blog/281262/)
 
 ### для чего нужны уровни изоляции
-[Уровни изоляции](https://habr.com/post/317884/)
+[Isolation Levels](https://habr.com/post/317884/)
 [Transaction iso](https://postgrespro.ru/docs/postgrespro/9.5/transaction-iso)
 
 ### какие феномены чтения бывают
 [read phenomena](https://en.wikipedia.org/wiki/Isolation_(database_systems)#Read_phenomena)
-[феномены чтения](https://habr.com/company/infopulse/blog/261097/)
+[read phenomena (habr)](https://habr.com/company/infopulse/blog/261097/)
   1. потерянное обновление (англ. lost update) — при одновременном изменении одного блока данных разными транзакциями одно из изменений теряется;
   2. «грязное» чтение (англ. dirty read) — чтение данных, добавленных или изменённых транзакцией, которая впоследствии не подтвердится (откатится);
   3. неповторяющееся чтение (англ. non-repeatable read) — при повторном чтении в рамках одной транзакции ранее прочитанные данные оказываются изменёнными;
   4. фантомное чтение (англ. phantom reads) — одна транзакция в ходе своего выполнения несколько раз выбирает множество строк по одним и тем же критериям. Другая транзакция в интервалах между этими выборками добавляет или удаляет строки или изменяет столбцы некоторых строк, используемых в критериях выборки первой транзакции, и успешно заканчивается. В результате получится, что одни и те же выборки в первой транзакции дают разные множества строк.
 
 ## Java junior
-### виды циклов [za loopi](https://www.developer.com/java/data/using-different-types-of-java-loops-looping-in-java.html)
+### виды циклов
+[za loopi](https://www.developer.com/java/data/using-different-types-of-java-loops-looping-in-java.html)
 1. while
 2. for
 3. do..while
@@ -202,14 +203,16 @@ Autoboxing is the automatic conversion that the Java compiler makes between the 
   - length()
 
 ### Какие есть модификаторы доступа?
-[модификаторы доступа](https://metanit.com/java/tutorial/3.3.php)
+[Acces modificators](https://metanit.com/java/tutorial/3.3.php)
   - public
   - private
   - protected
   - by default
 
 ### Что такое интерфейс?
-[интерфейс](https://ru.stackoverflow.com/questions/136909/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D1%8B-%D0%B2-%D0%9E%D0%9E%D0%9F-java-%D0%BF%D0%BE-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%BC%D1%83)
+[Interface](https://ru.stackoverflow.com/questions/136909/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D1%8B-%D0%B2-%D0%9E%D0%9E%D0%9F-java-%D0%BF%D0%BE-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%BC%D1%83)
+
+Интерфейс — это совокупность методов и правил взаимодействия элементов системы. Другими словами, интерфейс определяет как элементы будут взаимодействовать между собой.
 
 ### Какое отличие абстрактного класса от интерфейса?
 [святой хабр](https://habr.com/post/30444/)
@@ -218,15 +221,55 @@ Autoboxing is the automatic conversion that the Java compiler makes between the 
 
 ### Перечислить методы, которые присутствуют во всех объектах java.
 
+``` java
+  public Object()
+  public final Class getClass()
+  public int hashCode()
+  public boolean equals(Object obj)
+  protected Object clone() throws CloneNotSupportedException
+  public String toString()
+  public final void notify()
+  public final void notifyAll()
+  public final void wait(long timeout) throws InterruptedException
+  public final void wait(long timeout, int nanoseconds) throws InterruptedException
+  public final void wait() throws InterruptedException
+  protected void finalize() throws Throwable
+```
+
 ### Какие из них не public? Почему?
+``` java
+protected Object clone() throws CloneNotSupportedException
+```
+[Why Object class clone method is protected.](https://manjul.wordpress.com/2013/10/13/why-objects-clone-method-is-protected/)
+
+If you want to deep cloning in that case you need to override  the clone  method  and need to  give your own implementation of clone. Rather calling super.clone you  have to copy all NON MUTABLE  fields explicitly.
+``` java
+protected void finalize() throws Throwable
+```
+The finalize method is intended to be executed by the JVM just before GC collects garbage.
 
 ### Зачем нужен метод finalize?
+[JavaDoc finalize](https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#finalize%28%29)
+
+Called by the garbage collector on an object when garbage collection determines that there are no more references to the object. A subclass overrides the finalize method to dispose of system resources or to perform other cleanup. 
 
 ### Какая связь между equals and hashcode?
+[Difference between equals() and hashCode()](https://stackoverflow.com/questions/24446763/difference-between-equals-and-hashcode)
+1. equals()
+   
+   This method checks if some other object passed to it as an argument is equal the object in which this method is invoked. 
+2. hashCode()
+   
+   This method returns a hashCode() value as an Integer and is supported for the benefit of hashing based java.util.Collection classes like Hashtable, HashMap, HashSet etc. If a class overrides the equals() method, it must implement the hashCode() method as well.
 
 ### Рассказать иерархию исключений.
 
 ### Отличия между ArrayList и LinkedList.
+[When to use LinkedList over ArrayList?](https://stackoverflow.com/questions/322715/when-to-use-linkedlist-over-arraylist)
+
+LinkedList and ArrayList are two different implementations of the List interface. LinkedList implements it with a doubly-linked list. ArrayList implements it with a dynamically re-sizing array.
+
+
 
 ## Java middle
  
@@ -304,8 +347,6 @@ According to JSR330 the injection is done in the following order:
 
 ### жизненный цикл бина
 
-### что такое жизненный цикл бина
-
 ### можно ли добавить бин, если приложение уже стартануло
 
 ### как получить объекты ServletContext и ServletConfig
@@ -325,5 +366,9 @@ According to JSR330 the injection is done in the following order:
 ### для чего нужны аннотации @RequestBody, @PathVariable, @RequestParam
 
 ### что лежит в основе Spring Security
+[Spring Security Architecture](https://spring.io/guides/topicals/spring-security-architecture/)
+
+Authentication (who are you?) and authorization (what are you allowed to do?).
 
 ### преимущества и недостатки Spring Data
+Like Hibernate but needs customization.
