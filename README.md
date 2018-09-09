@@ -183,7 +183,8 @@ The wait() is used for inter-thread communication while sleep() is used to intro
   - In our case it is found as first element and returned value is ```30```.
 
 ### что такое автобоксинг
-    [JavaDoc](https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html)
+
+[JavaDoc](https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html)
 Autoboxing is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes. For example, converting an int to an Integer, a double to a Double, and so on. If the conversion goes the other way, this is called *unboxing*.
 
 ### рассказать про алгоритмы сортировки и их сложности
